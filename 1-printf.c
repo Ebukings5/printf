@@ -19,6 +19,7 @@ void buffer_print(char buffer[], int *buff_ind) {
 int _printf(const char *format, ...)
 {
     int count = 0;
+    int i;
     va_list args_statement;
     int buff_ind = 0;
     char buffer[BUFF_SIZE];
@@ -28,7 +29,7 @@ int _printf(const char *format, ...)
 
     va_start(args_statement, format);
 
-    for (int i = 0; format[i] != '\0'; i++)
+    for (i = 0; format[i] != '\0'; i++)
     {
         if (format[i] != '%')
 	{
@@ -52,5 +53,5 @@ int _printf(const char *format, ...)
     }
     buffer_print(buffer, &buff_ind);
     va_end(args_statement);
-    return count;
+    return (count);
 }

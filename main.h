@@ -1,10 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdio.h>
-#include <stddef.h>
-#include <string.h>
-#include <unistd.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
@@ -31,6 +29,7 @@ struct fmt
 	char fmt;
 	int (*fn)(va_list, char[], int, int, int, int);
 };
+
 
 /**
  * typedef struct fmt fmt_t - Struct op
@@ -77,7 +76,7 @@ int print_non_printable(va_list types, char buffer[],
 
 /* Funcion to print memory address */
 int print_pointer(va_list types, char buffer[],
-			int flags, int width, int precision, int size);
+	int flags, int width, int precision, int size);
 
 /* Funciotns to handle other specifiers */
 int get_flags(const char *format, int *i);
@@ -104,7 +103,7 @@ int write_pointer(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start);
 
 int write_unsgnd(int is_negative, int ind,
-	char buffer[],
+char buffer[],
 	int flags, int width, int precision, int size);
 
 /****************** UTILS ******************/
@@ -114,7 +113,5 @@ int is_digit(char);
 
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
-
-
 
 #endif /* MAIN_H */
