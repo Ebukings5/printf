@@ -7,15 +7,11 @@
  */
 int _printf(const char *format, ...)
 {
-	int string_len;
-	char character;
-
+	int string_len = 0;
 	va_list elements;
 	va_start(elements, format);
 
-	string_len = 0;
-
-	while(*format)
+	while (*format)
 	{
 		if (*format != '%')
 		{
@@ -25,23 +21,27 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
-
+			if (*format == '\0')
+			{
+				break;
+			}
 			switch (*format)
 			{
 				case 'c':
-				character = va_arg(elements, int);
-				_putchar((char)character);
-				string_len++;
-				break;
-
-				case 's':
-			{
-				const char *str = va_arg(elements, const char *);
-
-				if (str == NULL)
 				{
-					str = "(null)";
+					char character = va_arg(elements, int);
+					_putchar(character);
+					string_len++;
+					break;
 				}
+				case 's':
+				{
+					const char *str = va_arg(elements, const char *);
+
+					if (str == NULL)
+					{
+						str = "(null)";
+					}
 					while (*str)
 					{
 						_putchar(*str);
@@ -50,19 +50,21 @@ int _printf(const char *format, ...)
 					}
 					break;
 				}
-
 				case '%':
-				_putchar('%');
-				string_len++;
-				break;
+				{
+					_putchar('%');
+					string_len++;
+					break;
+				}
 				default:
-				_putchar('%');
-				putchar(*format);
-				string_len++;
+					_putchar('%');
+					_putchar(*format);
+					string_len += 2;
+					break;
 			}
 		}
 		format++;
 	}
 	va_end(elements);
-	return (string_len);
+	return string_len;
 }
