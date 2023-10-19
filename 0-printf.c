@@ -11,10 +11,9 @@ int _printf(const char *format, ...)
 	va_list args;
 	const char *str;
 	int num;
-	unsigned int binary;
 
-	va_start (args, format);
-	while (format && *format)
+	va_start(args, format);
+	while (*format)
 	{
 		if (*format != '%')
 		{
@@ -26,13 +25,15 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 				break;
+
 			switch (*format)
 			{
 			case 'c':
 				num = va_arg(args, int);
 				_putchar(num);
 				string_len++;
-					break;
+				break;
+
 			case 's':
 				str = va_arg(args, const char *);
 				if (str == NULL)
@@ -44,19 +45,18 @@ int _printf(const char *format, ...)
 					string_len++;
 				}
 				break;
+
 			case '%':
 				_putchar('%');
 				string_len++;
 				break;
+
 			case 'd':
 			case 'i':
 				num = va_arg(args, int);
 				print_number(num, &string_len);
 				break;
-			case 'b':
-				binary = va_arg(args, unsigned int);
-				print_binary(binary, &string_len);
-				break;
+
 			default:
 				_putchar('%');
 				_putchar(*format);
@@ -68,21 +68,10 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (string_len);
 }
-<<<<<<< HEAD
-/************************* PRINT INT *************************/
 /**
  * print_number - Print an integer using _putchar
  * @n: The integer to print
  * @len: Pointer to the length counter
-=======
-
-/**
- * print_number - print an integar
- * @n: the int to print
- * @len: pointer to length 
- *
- * Return: 0
->>>>>>> ae578e4 (updated task 0 to meet the outcome of task 2)
  */
 void print_number(int n, int *len)
 {
@@ -91,18 +80,13 @@ void print_number(int n, int *len)
 	if (n < 0)
 	{
 		_putchar('-');
-<<<<<<< HEAD
 		*len += 1;
-=======
-		*len =+ 1;
->>>>>>> ae578e4 (updated task 0 to meet the outcome of task 2)
 		num = -n;
 	}
 	else
 	{
 		num = n;
 	}
-<<<<<<< HEAD
 
 	if (num / 10)
 		print_number(num / 10, len);
@@ -110,29 +94,10 @@ void print_number(int n, int *len)
 	_putchar((num % 10) + '0');
 	*len += 1;
 }
-=======
-	if (num / 10)
-		print_number(num / 10, len);
-	_putchar((num % 10) + '0');
-	*len += 1;
-}
 /**
- * print_binary - print an unsigned int in binary
- * @n: the unsigned int to print
- * @len: pointer to length
- */
-void print_binary(unsigned int n, int *len)
-{
-	if (n / 2)
-		print_binary(n / 2, len);
-	_putchar((n % 2) + '0');
-	*len += 1;
-}
-/**
- * main - function main
+ * main - main function
  */
 int main(void)
 {
 	return (0);
 }
->>>>>>> ae578e4 (updated task 0 to meet the outcome of task 2)
