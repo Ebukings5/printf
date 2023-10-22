@@ -5,9 +5,12 @@
 #include <string.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <limits.h>
 
 int _printf(const char *format, ...);
 int _putchar(char c);
 void print_number(int n, int *len);
+void print_binary(unsigned int n, int *len);
+void print_string(const char *str, int *len);
 
 #endif
